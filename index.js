@@ -9,7 +9,7 @@ const Blog = require('./models/blog');
 
 // Define
 const app = express();
-const PORT = 2975;
+const PORT = process.env.PORT;
 connectToMongoDB();
 
 // SET
