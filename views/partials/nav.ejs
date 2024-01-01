@@ -1,0 +1,57 @@
+<nav class='navbar navbar-expand-lg bg-dark'>
+    <div class='container-fluid' style="width: auto;">
+        <a class='navbar-brand text-light' href='/'>Blogify</a>
+        <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown'
+            aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation' data-bs-theme='dark'>
+            <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+            <ul class='navbar-nav'>
+                <li class='nav-item'>
+                    <a class='nav-link active text-light' aria-current='page' href='/'>Home</a>
+                </li>
+                <% if (locals.user) { %>
+                    <li class='nav-item'>
+                        <a class='nav-link text-light' href='/blog/add'>Add Blog</a>
+                    </li>
+                    <li class='nav-item dropdown'>
+                        <a class='nav-link dropdown-toggle text-light' href='/' role='button' data-bs-toggle='dropdown'
+                            aria-expanded='false'>
+                            Shrinidhi Rao
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a class='dropdown-item' href='/user/logout'>Log Out</a></li>
+                        </ul>
+                    </li>
+                    <% } else {%>
+                        <li class='nav-item'>
+                            <a class='nav-link text-light' href='/user/login'>Login</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link text-light' href='/user/signUp'>Want An Account??</a>
+                        </li>
+                    <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+
+<% if (locals.error) { %>
+    <div class="container mt-4">
+        <div class="alert alert-danger d-flex align-items-center position-relative" role="alert" style="height: 50px;">
+            <svg class="bi position-absolute start-0" role="img" aria-label="Danger:" style="height: 40px;width: 100px;">
+                <use xlink:href="#exclamation-triangle-fill" class="me-0" />
+            </svg>
+            <div class="position-absolute" style="line-height: 25px;left: 90px;">
+                <strong><%= locals.error.toString().split(' ')[0] %></strong> <%= locals.error.toString().split(':')[1] %>
+            </div>
+        </div>
+    </div>
+<% } %>
